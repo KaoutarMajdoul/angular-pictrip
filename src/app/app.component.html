@@ -1,1 +1,9 @@
-<app-pic></app-pic>
+<header class="app-header">
+    <h1 class="logo">PicTrip</h1>
+
+    <button class="signup-btn">
+    S’inscrire
+  </button>
+</header>
+@for (pic of pics; track pic.title) {
+<app-pic [pic]="pic" /> }

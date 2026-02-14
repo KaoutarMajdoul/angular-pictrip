@@ -1,7 +1,7 @@
-# angular-picshare
-First project using Angular with OpenClassroom course. This is an app to share pics 📸
+# angular-pictrip
+First project using Angular with OpenClassroom course. This is an app to share trip pics 📸
 =======
-# Picshare
+# pictrip
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.17.
 

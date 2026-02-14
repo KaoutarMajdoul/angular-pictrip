@@ -1,27 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Pic } from '../models/pic';
+import { DatePipe, LowerCasePipe, NgClass, NgStyle, TitleCasePipe, UpperCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-pic',
   standalone: true,
-  imports: [],
+  imports: [
+    NgStyle,
+    NgClass,
+    UpperCasePipe,
+    TitleCasePipe,
+    LowerCasePipe,
+    DatePipe
+  ],
   templateUrl: './pic.component.html',
   styleUrl: './pic.component.scss'
 })
 export class PicComponent implements OnInit{
-  title!: string;
-  description!: string;
-  createdAt!: Date;
-  likes!: number;
-  imageUrl!: string;
+  @Input() pic!: Pic;
+
   userHasLiked!: boolean;
   likeButtonText!: String;
 
   ngOnInit(): void {
-      this.title = "Bientôt les vacances";
-      this.description = "Devinez ma prochaine destination.. un indice : paradisiaque.";
-      this.createdAt = new Date();
-      this.likes = 0;
-      this.imageUrl = "https://www.voyagetanzanie.fr/cdn/tz-public/nungwi_plage-MAX-w1000h600.jpg";
       this.userHasLiked = false;
       this.likeButtonText = "Like";
     
@@ -29,20 +30,20 @@ export class PicComponent implements OnInit{
 
     onLike(): void {
       if (this.userHasLiked) {
-       this.unlike();
+        this.unlike();
       } else {
         this.like();
       }
     }
 
     unlike() {
-        this.likes--;
+        this.pic.removeLike();
         this.likeButtonText = "Like";
         this.userHasLiked = false;
     }
 
     like() {
-        this.likes++;
+        this.pic.addLike();
         this.likeButtonText = "Unlike";
         this.userHasLiked = true;
     }

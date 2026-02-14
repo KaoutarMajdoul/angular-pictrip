@@ -1,9 +1,18 @@
-<div class="pic-share-card">
-    <h2>{{ title }}</h2>
-    <img [src]="imageUrl" [alt]="title">
-    <p>{{ description }}</p>
-    <p>PicShare créée le {{ createdAt }}</p>
+<div class="pic-trip-card" [ngClass]="{liked: userHasLiked}">
+    <h2>{{ pic.title | uppercase }}</h2>
+    @if (pic.location !== '' ) {
+    <p>Localisation : {{pic.location}}</p>
+    } @else {
+    <p>Localisation non spécifié</p>
+    }
+
+    <img [src]="pic.imageUrl" [alt]="pic.title">
+    <p>{{ pic.description }}</p>
+
+    <p class="pic-date">
+        pictrip créée le {{ pic.createdAt | date: 'd MMMM yyyy, à HH:mm' }}
+    </p>
     <p>
-        <button (click)="onLike()"> {{ likeButtonText }}</button> {{ likes }} ❤️
+        <button class="like-btn" (click)="onLike()"> {{ likeButtonText }}</button> {{ pic.likes }} ⭐️
     </p>
     <div>
